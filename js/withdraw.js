@@ -1,42 +1,33 @@
-/**
- 1. add event handlers with the withdrawn button
- 2. get the withdraw amount from the withdraw input field
- 2-5. also make sure to convert the input field into a number by using parseFloat() function
- 3. Get previous withdraw amount total
- 4. calculate total withdraw amount
- 4-5. set total withdraw amount
- */
+// step 1
+const withdrawField = document.getElementById('btn_withdraw').addEventListener('click', function () {
+    // console.log('withdraw button clicked');
+    // step 2
+    const withdrawAmountField = document.getElementById('withdraw_field');
+    const withdrawAmountString = withdrawAmountField.value;
+    const withdrawAmount = parseFloat(withdrawAmountString);
+    // console.log(typeof withdrawAmount);
 
-// // step 1
-// document.getElementById('btn_withdraw').addEventListener('click', function () {
-//     // step 2
-//     const withdrawField = document.getElementById('withdraw_field');
-//     const newWithdrawAmountString = withdrawField.value;
-//     const newWithdrawAmount = parseFloat(newWithdrawAmountString);
+    // step 3
+    const previousWithdrawAmountField = document.getElementById('withdraw_total');
+    const previousWithdrawAmountString = previousWithdrawAmountField.innerText;
+    const previousWithdrawAmount = parseFloat(previousWithdrawAmountString);
+    // console.log(typeof previousWithdrawAmount);
 
-//     // step 3
-//     const previousWithdrawField = document.getElementById('withdraw_total');
-//     const previousWithdrawAmountString = previousWithdrawField.innerText;
-//     const previousWithdrawAmount = parseFloat(previousWithdrawAmountString);
+    // step 4
+    const newWithdrawAmount = previousWithdrawAmount + withdrawAmount;
+    previousWithdrawAmountField.innerText = newWithdrawAmount;
+    // console.log(newWithdrawAmount);
 
-//     // step 5
-//     const balanceTotalElement = document.getElementById('balance_total');
-//     const previousBalanceTotalString = balanceTotalElement.innerText;
-//     const previousBalanceTotal = parseFloat(previousBalanceTotalString);
+    // clear previous withdrawAmount field
+    withdrawAmountField.value = '';
 
-//     // step 8
-//     withdrawField.value = '';
+    // step 5
+    const previousBalanceTotalField = document.getElementById('balance_total');
+    const previousBalanceTotalString = previousBalanceTotalField.innerText;
+    const previousBalanceTotal = parseFloat(previousBalanceTotalString);
+    // console.log(typeof previousBalanceTotal);
 
-//     if (newWithdrawAmount > previousBalanceTotal) {
-//         alert('Your Baap er Bank is enough money to withdraw');
-//         return;
-//     }
-
-//     // step 6
-//     const presentBalanceTotalAmount = previousBalanceTotal - newWithdrawAmount;
-//     balanceTotalElement.innerText = presentBalanceTotalAmount;
-
-//     // step 4
-//     const currentWithdrawTotal = previousWithdrawAmount + newWithdrawAmount;
-//     previousWithdrawField.innerText = currentWithdrawTotal;
-// });
+    // step 6
+    const presentBalanceTotalAmountField = previousBalanceTotal - withdrawAmount;
+    previousBalanceTotalField.innerText = presentBalanceTotalAmountField;
+});
